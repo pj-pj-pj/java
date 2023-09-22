@@ -1,7 +1,15 @@
+// UCOL, PAULA JOYCE S.
+// CC4 CASE STUDY ON ARRAY OPERATIONS - SEP 2023
+// BSCS-2D 
+
 package ArrayFunctions;
+
+import java.lang.Math;
 
 public class ArrayFunctions {
   public static void main(String[] args) {
+    ArrayMenu menu = new ArrayMenu();
+    menu.init();
   }
 
   static String retrieve(String element, String[] array) {
@@ -77,5 +85,45 @@ public class ArrayFunctions {
 
       return array;
     }
+  }
+
+  // counts and prints elements
+  static String traverse(String[] array) {
+    int count = 0;
+
+    String stringArr = "\nArray has " + array.length + " elements:\n";
+    stringArr += "{ ";
+
+    for (String element : array) {
+      if (!element.equals(array[array.length - 1])) {
+        stringArr += element + ", ";
+        count++;
+      } else {
+        if (element.equals(null)) { // skip null element
+          stringArr += " }";
+        } else {
+          stringArr += element + " }";
+          count++;
+        }
+      }
+    }
+
+    return stringArr;
+  }
+
+  // other function:
+
+  static String[] generateArray(int length) {
+    String[] array = new String[length];
+    for (int i = 0; i < array.length; i++) {
+      // generate random double num >= 0.0 but < 1.0
+      // then multiply to the biggest possible number preferred + 1
+      // to generate whole positive integers
+      int element = (int) (Math.random() * 101);
+
+      update(i, Integer.toString(element), array);
+    }
+
+    return array;
   }
 }
