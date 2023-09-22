@@ -48,7 +48,7 @@ public class ArrayFunctions {
 
     array[index] = replacement;
 
-    return "Element at index [" + index + "] successsfully updated.";
+    return "Element at index [" + index + "] successsfully updated to " + replacement;
   }
 
   static String[] insert(int index, String newElement, String[] array) {
@@ -75,7 +75,7 @@ public class ArrayFunctions {
       newArr[index] = newElement;
 
       return newArr;
-    } else {
+    } else { // array has null value
       for (int i = array.length - 1; i > index; i--) {
         array[i] = array[i - 1];
       }
@@ -91,24 +91,17 @@ public class ArrayFunctions {
   static String traverse(String[] array) {
     int count = 0;
 
-    String stringArr = "\nArray has " + array.length + " elements:\n";
-    stringArr += "{ ";
+    String stringArr = "";
 
-    for (String element : array) {
-      if (!element.equals(array[array.length - 1])) {
-        stringArr += element + ", ";
+    for (int i = 0; i < array.length; i++) {
+      if (array[i] != null) { // skip null element
+        stringArr += "[" + i + "] = " + array[i] + "\n";
         count++;
-      } else {
-        if (element.equals(null)) { // skip null element
-          stringArr += " }";
-        } else {
-          stringArr += element + " }";
-          count++;
-        }
       }
     }
 
-    return stringArr;
+    String arrCount = "\nArray has " + count + " elements:\n";
+    return arrCount + stringArr;
   }
 
   // other function:
